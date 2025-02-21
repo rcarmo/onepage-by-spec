@@ -4,7 +4,7 @@ This is a simple single-file web application that serves as a homepage/link dash
 
 The end result looks like this:
 
-![Screenshot](screenshot.png)
+![Animation](animation.gif)
 
 ## Why
 
