@@ -22,15 +22,15 @@
 
 ## 6. Keyboard and Mouse Navigation
 - **Rationale**: To enhance accessibility and user convenience.
-- **Implementation**: Implemented arrow key navigation for tabs and typeahead filtering, with mouse interactions for tab selection and link activation.
+- **Implementation**: Implemented arrow key navigation for tabs and typeahead filtering, with mouse interactions for tab selection and link activation. Resetting the search query also resets the active tab to the first tab.
 
 ## 7. Typeahead Filtering
 - **Rationale**: To allow users to quickly search and access links.
-- **Implementation**: Real-time filtering of links based on user input, with a floating result list displayed at the center of the screen.
+- **Implementation**: Real-time filtering of links based on user input, with a floating result list displayed at the center of the screen. Matches are case-insensitive and search within the title, description, or URL.
 
 ## 8. Error Handling and Fallbacks
 - **Rationale**: To ensure robustness in cases where system time retrieval fails or links have missing data.
-- **Implementation**: Displayed a generic welcome message if system time is unavailable, and provided default values for missing link titles or descriptions.
+- **Implementation**: Displayed a generic welcome message if system time is unavailable, and provided default values for missing link titles or descriptions. Links with missing descriptions are left blank, and empty tabs display a "No links available" message.
 
 ## 9. Frequency-Based Prioritization (Planned)
 - **Rationale**: To prioritize frequently accessed links for improved user efficiency.
@@ -38,7 +38,7 @@
 
 ## 11. Arrow Key Rendering in Key Indicator
 - **Rationale**: To improve the visual representation of arrow key presses.
-- **Implementation**: Arrow key presses are rendered as Unicode glyphs (←, →, ↑, ↓) in the key indicator.
+- **Implementation**: Arrow key presses are rendered as Unicode glyphs (←, →, ↑, ↓) in the key indicator. The indicator also supports multiple simultaneous key presses.
 
 ## 10. Documentation and User Instructions
 - **Rationale**: To assist users in understanding dashboard functionalities.
