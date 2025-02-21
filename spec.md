@@ -38,7 +38,7 @@ The goal is to create a single, self-contained HTML file that serves as a lightw
    - The clocks are small, rendered inline under the date, and update continuously.
    - If the system time cannot be retrieved, a generic "Welcome" message is displayed without the date or clocks.
    - The clocks and date are always aligned to the right.
-   - This fallback behavior is not implemented.
+   - This fallback behavior is implemented, displaying a generic "Welcome" message if system time retrieval fails.
    - The clocks update every second to ensure accurate time display.
 
 5. **System Theme Adaptation**:
@@ -55,11 +55,12 @@ The goal is to create a single, self-contained HTML file that serves as a lightw
      - Clears the current search.
      - Hides the floating list of matches.
      - Resets the active tab to the first tab.
-     - This functionality is partially implemented. The `Escape` key clears the search but does not reset the active tab.
+     - This functionality is partially implemented. The `Escape` key clears the search but does not reset the active tab. Arrow key navigation between tabs is implemented.
    - The documentation section at the bottom of the page animates out of sight after 10 seconds or when a key is pressed.
    - A keyboard indicator is displayed at the bottom left of the screen, showing the keys being pressed.
    - Special keys (e.g., "Enter", "Shift") are displayed in rectangular boxes, while regular keys are displayed in square boxes.
    - Arrow keys are displayed as Unicode glyphs (←, →, ↑, ↓) in the keyboard indicator.
+   - Special keys like "Enter" and "Shift" are displayed in rectangular boxes, while regular keys are displayed in square boxes.
    - Keys fade out a few seconds after being pressed.
 
 ---
@@ -102,7 +103,7 @@ The goal is to create a single, self-contained HTML file that serves as a lightw
 1. **Invalid Links**:
    - Links with invalid or missing categories are omitted.
    - Links with invalid URLs are treated as valid and opened as-is.
-   - Links with missing titles do not currently display "Untitled" as specified.
+   - Links with missing titles display "Untitled" as specified.
 
 2. **Empty Tabs**:
    - Tabs with no links display a "No links available" message.
