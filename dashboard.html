@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Edit the contend of the script tag below to add your links -->
+<script id="links-data" type="text/plain">
+Development:
+Google | Search engine | https://google.com
+GitHub | Code hosting | https://github.com
+
+Reference:
+Stack Overflow | Programming Q&A | https://stackoverflow.com
+MDN Web Docs | Web documentation | https://developer.mozilla.org
+W3Schools | Web tutorials | https://www.w3schools.com
+CSS Tricks | CSS tips and tricks | https://css-tricks.com
+FreeCodeCamp | Learn to code | https://www.freecodecamp.org
+DevDocs | API documentation | https://devdocs.io
+Can I Use | Browser support | https://caniuse.com
+CSS Reference | CSS properties | https://cssreference.io
+
+Social:
+Twitter | Microblogging | https://twitter.com
+Reddit | Social news | https://reddit.com
+</script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        :root {
+            --bg-color: white;
+            --text-color: black;
+            --highlight-color: lightgray;
+        }
+
+        .documentation {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: var(--highlight-color);
+            color: var(--text-color);
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.875rem;
+            border-top: 1px solid var(--text-color);
+            transform: translateY(0);
+            animation: slide-out 1s ease 10s forwards, trigger-animation 0s; /* Ensure animation triggers on load */
+        }
+
+        @keyframes trigger-animation {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slide-out {
+            to {
+                transform: translateY(100%);
+            }
+        }
+
+        .documentation .instructions {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .documentation h3 {
+            margin: 0 0 0.5rem 0;
+            font-size: 1rem;
+        }
+
+        .documentation ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .documentation li {
+            margin: 0.25rem 0;
+        }
+
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #121212;
+                --text-color: white;
+                --highlight-color: #333333;
+            }
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid var(--highlight-color);
+            max-width: 800px;
+            margin: 1rem auto 0 auto;
+        }
+
+        .greeting {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .date {
+            font-size: 1rem;
+            text-align: right;
+            margin-bottom: 0.25rem;
+            color: var(--text-color);
+            opacity: 0.9;
+        }
+
+        .clocks {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            font-size: 0.75rem;
+            color: var(--text-color);
+            opacity: 0.8;
+            margin-top: 0.25rem;
+        }
+
+        .clock {
+            margin: 0;
+        }
+
+        .main-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            border-bottom: 1px solid var(--highlight-color);
+            max-width: 800px;
+            margin: 0 auto;
+            flex-wrap: wrap; /* Allow tabs to wrap on smaller screens */
+        }
+
+        .tab {
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            user-select: none;
+            flex: 1 1 auto; /* Make tabs flexible for smaller screens */
+            text-align: center;
+        }
+
+        .tab.active {
+            font-weight: bold;
+            border-bottom: 2px solid var(--text-color);
+        }
+
+        .floating-results {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            max-height: 80vh;
+            overflow-y: auto;
+            background-color: var(--bg-color);
+            border: 1px solid var(--highlight-color);
+            border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            padding: 1rem;
+            z-index: 1000;
+        }
+
+        .floating-results.hidden {
+            display: none;
+        }
+
+        .link {
+            display: block;
+            padding: 1rem;
+            margin: 0.15rem;
+            border: 1px solid var(--highlight-color);
+            border-radius: 6px;
+            text-decoration: none;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            flex: 1 1 calc(30% - 1rem);
+            box-sizing: border-box;
+        }
+
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding: 1rem;
+        }
+
+        @media (max-width: 600px) {
+            .link {
+                flex: 1 1 calc(100% - 1rem); /* Make links full-width on smaller screens */
+            }
+
+            .tabs {
+                flex-direction: column; /* Stack tabs vertically on smaller screens */
+            }
+
+            .tab {
+                flex: none; /* Prevent tabs from stretching */
+            }
+        }
+
+        .link-title {
+            font-size: 1rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .link-description {
+            font-size: 0.875rem;
+            color: var(--text-color);
+            opacity: 0.8;
+        }
+
+        .link:hover {
+            background-color: rgba(128, 128, 128, 0.2); /* Slightly less prominent hover color */
+        }
+
+        .results-count {
+            margin-top: 1rem;
+            text-align: center;
+            background-color: var(--highlight-color);
+            padding: 0.5rem;
+            border-radius: 4px;
+        }
+
+        .hidden {
+            display: none;
+        }
+        .key-indicator {
+            position: fixed;
+            bottom: 1rem;
+            left: 1rem;
+            display: flex;
+            gap: 0.5rem;
+            z-index: 1000;
+        }
+
+        .key-box {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--highlight-color);
+            color: var(--text-color);
+            font-size: 0.875rem;
+            font-weight: bold;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+
+        .key-box.square {
+            width: 2rem;
+            height: 2rem;
+        }
+
+        .key-box.rectangle {
+            padding: 0.25rem 0.5rem;
+        }
+
+        .key-box.fade-out {
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="greeting" id="greeting">Welcome</div>
+        <div style="text-align: right;">
+            <div class="date" id="date"></div>
+            <div class="clocks" id="clocks">
+            <div class="clock" id="utc-clock">UTC: --:--</div>
+            <div class="clock" id="cet-clock">CET: --:--</div>
+            <div class="clock" id="seattle-clock">Seattle: --:--</div>
+            <div class="clock" id="india-clock">India: --:--</div>
+            </div>
+    </header>
+    <div class="main-content">
+        <div class="tabs" id="tabs"></div>
+        <div class="content" id="content"></div>
+    </div>
+    <div class="floating-results hidden" id="floating-results"></div>
+    <div class="key-indicator" id="key-indicator"></div>
+    <script>
+        // Define the tabs and their associated links using the special HTML tag
+        const rawLinks = document.getElementById("links-data").textContent.trim();
+
+        // Parse the raw text block into structured tabs and links
+        const tabs = rawLinks.trim().split("\n\n").map(section => {
+            const [category, ...links] = section.split("\n");
+            return {
+                name: category.replace(":", "").trim(),
+                links: links.map(link => {
+                    const [title, description, url] = link.split(" | ").map(part => part.trim());
+                    return { title, description, url };
+                })
+            };
+        });
+
+        const greetingEl = document.getElementById("greeting");
+        const dateEl = document.getElementById("date");
+        const tabsEl = document.getElementById("tabs");
+
+        let activeTab = 0;
+        let searchQuery = "";
+
+        // Update the greeting and date dynamically based on system time
+        function updateGreeting() {
+            const now = new Date();
+            const hours = now.getHours();
+            const greetings = ["Good Night", "Good Morning", "Good Afternoon", "Good Evening"];
+            const greeting = hours < 5 ? greetings[0] :
+                             hours < 12 ? greetings[1] :
+                             hours < 17 ? greetings[2] : greetings[3];
+            greetingEl.textContent = greeting;
+            dateEl.textContent = now.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+        }
+
+        // Update the clocks for different timezones
+        function updateClocks() {
+            const now = new Date();
+            const utcTime = now.toUTCString().slice(-12, -7); // Extract HH:MM from UTC string
+            const cetTime = new Date(now.getTime() + 3600000).toTimeString().slice(0, 5); // UTC+1
+            const seattleTime = new Date(now.getTime() - 28800000).toTimeString().slice(0, 5); // UTC-8
+            const indiaTime = new Date(now.getTime() + 19800000).toTimeString().slice(0, 5); // UTC+5:30
+
+            document.getElementById("utc-clock").textContent = `UTC: ${utcTime}`;
+            document.getElementById("cet-clock").textContent = `CET: ${cetTime}`;
+            document.getElementById("seattle-clock").textContent = `Seattle: ${seattleTime}`;
+            document.getElementById("india-clock").textContent = `India: ${indiaTime}`;
+        }
+
+        // Render the tabs and set up click handlers for switching tabs
+        function renderTabs() {
+            tabsEl.innerHTML = "";
+            tabs.forEach((tab, index) => {
+                const tabEl = document.createElement("div");
+                tabEl.textContent = tab.name;
+                tabEl.className = `tab ${index === activeTab ? "active" : ""}`;
+                tabEl.addEventListener("click", () => {
+                    activeTab = index;
+                    searchQuery = "";
+                    renderTabs(); // Ensure tabs are correctly highlighted
+                    renderContent();
+                });
+                tabsEl.appendChild(tabEl);
+            });
+        }
+
+        // Render the floating search results based on the current search query
+        function renderFloatingResults() {
+            const filteredLinks = tabs.flatMap(tab =>
+                tab.links.filter(link =>
+                    link.title.toLowerCase().includes(searchQuery) ||
+                    (link.description && link.description.toLowerCase().includes(searchQuery)) ||
+                    (link.url && link.url.toLowerCase().includes(searchQuery))
+                ).map(link => ({ ...link, category: tab.name }))
+            );
+
+            const floatingResultsEl = document.getElementById("floating-results");
+            floatingResultsEl.innerHTML = "";
+
+            if (filteredLinks.length === 0) {
+                floatingResultsEl.textContent = "No matches found";
+            } else {
+                filteredLinks.forEach((link, index) => {
+                    const linkEl = document.createElement("a");
+                    linkEl.href = link.url;
+                    linkEl.target = "_blank";
+                    linkEl.className = "link";
+                    const titleEl = document.createElement("div");
+                    titleEl.className = "link-title";
+                    titleEl.textContent = link.title;
+
+                    const descriptionEl = document.createElement("div");
+                    descriptionEl.className = "link-description";
+                    descriptionEl.textContent = link.description || "";
+
+                    linkEl.appendChild(titleEl);
+                    linkEl.appendChild(descriptionEl);
+                    floatingResultsEl.appendChild(linkEl);
+
+                    // Highlight the link if it's the only match
+                    if (filteredLinks.length === 1) {
+                        linkEl.style.backgroundColor = "var(--highlight-color)";
+                        activeLinkIndex = 0;
+                    }
+                });
+            }
+
+            floatingResultsEl.classList.toggle("hidden", searchQuery === "");
+        }
+
+        let activeLinkIndex = -1;
+
+        // Handle keyboard navigation and actions
+        function handleKeydown(event) {
+            const contentEl = document.getElementById("content");
+            const floatingResultsEl = document.getElementById("floating-results");
+            const links = searchQuery
+                ? Array.from(floatingResultsEl.querySelectorAll(".link"))
+                : Array.from(contentEl.querySelectorAll(".link"));
+
+            if (event.key === "ArrowLeft") {
+                activeTab = (activeTab - 1 + tabs.length) % tabs.length;
+                searchQuery = "";
+                activeLinkIndex = -1;
+                renderTabs(); // Update tab highlight
+                renderContent();
+                renderFloatingResults();
+            } else if (event.key === "ArrowRight") {
+                activeTab = (activeTab + 1) % tabs.length;
+                searchQuery = "";
+                activeLinkIndex = -1;
+                renderTabs(); // Update tab highlight
+                renderContent();
+                renderFloatingResults();
+            } else if (event.key === "ArrowUp") {
+                if (links.length > 0) {
+                    activeLinkIndex = (activeLinkIndex - 1 + links.length) % links.length;
+                    links.forEach((link, index) => {
+                        link.style.backgroundColor = index === activeLinkIndex ? "var(--highlight-color)" : "";
+                    });
+                }
+            } else if (event.key === "ArrowDown") {
+                if (links.length > 0) {
+                    activeLinkIndex = (activeLinkIndex + 1) % links.length;
+                    links.forEach((link, index) => {
+                        link.style.backgroundColor = index === activeLinkIndex ? "var(--highlight-color)" : "";
+                    });
+                }
+            } else if (event.key === "Backspace") {
+                searchQuery = searchQuery.slice(0, -1);
+                renderFloatingResults();
+            } else if (event.key === "Escape") {
+                searchQuery = "";
+                activeLinkIndex = -1;
+                renderFloatingResults();
+                renderContent();
+            } else if (event.key === "Enter") {
+                if (activeLinkIndex !== -1 && links[activeLinkIndex]) {
+                    links[activeLinkIndex].click();
+                } else {
+                    const firstLink = floatingResultsEl.querySelector(".link");
+                    if (firstLink) {
+                        firstLink.click();
+                    }
+                }
+            } else if (event.key.length === 1) {
+                searchQuery += event.key.toLowerCase();
+                renderFloatingResults();
+            }
+        }
+
+        const keyIndicatorEl = document.getElementById("key-indicator");
+
+        document.addEventListener("keydown", (event) => {
+            handleKeydown(event);
+
+            // Ignore arrow keys for display
+            if (!["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"].includes(event.key)) {
+                // Create a key box for the pressed key
+                const keyBox = document.createElement("div");
+                const isSpecialKey = event.key.length > 1; // Special keys like "Enter", "Shift", etc.
+                keyBox.className = `key-box ${isSpecialKey ? "rectangle" : "square"}`;
+                keyBox.textContent = event.key;
+
+                // Add the key box to the indicator
+                keyIndicatorEl.appendChild(keyBox);
+
+                // Fade out and remove the key box after 2 seconds
+                setTimeout(() => {
+                    keyBox.classList.add("fade-out");
+                    setTimeout(() => keyBox.remove(), 500); // Wait for fade-out transition
+                }, 2000);
+            }
+        });
+
+        // Render the links inside the currently active tab
+        function renderContent() {
+            const tab = tabs[activeTab];
+            const contentEl = document.getElementById("content");
+            contentEl.innerHTML = "";
+
+            if (tab.links.length === 0) {
+                contentEl.textContent = "No links available";
+            } else {
+                tab.links.forEach(link => {
+                    const linkEl = document.createElement("a");
+                    linkEl.href = link.url;
+                    linkEl.target = "_blank";
+                    linkEl.className = "link";
+                    const titleEl = document.createElement("div");
+                    titleEl.className = "link-title";
+                    titleEl.textContent = link.title;
+
+                    const descriptionEl = document.createElement("div");
+                    descriptionEl.className = "link-description";
+                    descriptionEl.textContent = link.description || "";
+
+                    linkEl.appendChild(titleEl);
+                    linkEl.appendChild(descriptionEl);
+                    contentEl.appendChild(linkEl);
+                });
+            }
+        }
+
+        updateGreeting();
+        renderTabs();
+        renderContent();
+        updateClocks();
+        setInterval(updateClocks, 1000); // Update clocks every second
+
+        // Hide documentation immediately on key press
+        document.addEventListener("keydown", () => {
+            const documentationEl = document.querySelector(".documentation");
+            if (documentationEl) {
+                documentationEl.style.animation = "none"; // Stop any ongoing animation
+                documentationEl.style.transform = "translateY(100%)"; // Move out of sight
+                documentationEl.style.display = "none"; // Remove from layout
+            }
+        });
+    </script>
+    <footer class="documentation">
+        <ul class="instructions">
+            <li>Navigate using the <strong>Arrow Keys</strong> or just start typing to search. Hit <strong>Enter</strong> to open a link or <strong>Escape</strong> to reset.</li>
+        </ul>
+    </footer>
+</body>
+</html>
