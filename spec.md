@@ -23,10 +23,11 @@ The goal is to create a single, self-contained HTML file that serves as a lightw
      - Clicking a tab displays all links in that category, regardless of the search query.
      - Arrow keys for cycling between tabs (left/right).
      - Mouse clicks for direct selection.
+     - Resetting the search query also resets the active tab to the first tab.
 
 3. **Typeahead Filtering**:
    - Filters links in real-time as the user types.
-   - Matches anywhere within the title or description (case-insensitive).
+   - Matches anywhere within the title, description, or URL (case-insensitive).
    - Displays matching links in a floating list at the center of the screen, regardless of their category or tab, with a slight drop shadow.
    - Backspace refines the search, and Escape clears the search results and displays all links in the active tab.
    - Displays a message like "No matches found" if no results are available.
@@ -36,7 +37,7 @@ The goal is to create a single, self-contained HTML file that serves as a lightw
      - Clears the current search.
      - Hides the floating list of matches.
      - Resets the active tab to the first tab.
-     - This functionality is partially implemented. The `Escape` key clears the search but does not reset the active tab. Arrow key navigation between tabs is implemented.
+     - This functionality is partially implemented. The `Escape` key clears the search but does not reset the active tab. Arrow key navigation between tabs is implemented. The floating results list is hidden when the search is cleared.
 
 5. **Link Interaction**:
    - Links are displayed with a title and optional description in the floating list and inside tabs.
@@ -56,6 +57,7 @@ The goal is to create a single, self-contained HTML file that serves as a lightw
    - Special keys (e.g., "Enter", "Shift") are displayed in rectangular boxes, while regular keys are displayed in square boxes.
    - Arrow keys are displayed as Unicode glyphs (←, →, ↑, ↓) in the keyboard indicator.
    - Keys fade out a few seconds after being pressed.
+   - The indicator supports multiple simultaneous key presses.
 
 8. **Persistent Frequency-Based Prioritization**:
    - This feature is not implemented. Links are not prioritized based on frequency of use, and no frequency data is stored or cleared.
@@ -101,7 +103,7 @@ The goal is to create a single, self-contained HTML file that serves as a lightw
 1. **Invalid Links**:
    - Links with invalid or missing categories are omitted.
    - Links with invalid URLs are treated as valid and opened as-is.
-   - Links with missing titles display "Untitled" as specified.
+   - Links with missing titles display "Untitled" as specified. Links with missing descriptions are left blank.
 
 2. **Empty Tabs**:
    - Tabs with no links display a "No links available" message.
