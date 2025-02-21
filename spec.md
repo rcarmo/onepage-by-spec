@@ -6,31 +6,7 @@ The goal is to create a single, self-contained HTML file that serves as a lightw
 ---
 
 ## **Core Features**
-1. **Tabs for Categories**:
-   - Links are grouped into categories, each represented by a horizontal tab.
-   - Only one tab is visible at a time.
-   - Tabs are navigable via:
-     - Clicking a tab displays all links in that category, regardless of the search query.
-     - Arrow keys for cycling between tabs (left/right).
-     - Mouse clicks for direct selection.
-
-2. **Typeahead Filtering**:
-   - Filters links in real-time as the user types.
-   - Matches anywhere within the title or description (case-insensitive).
-   - Displays matching links in a floating list at the center of the screen, regardless of their category or tab, with a slight drop shadow.
-   - Backspace refines the search, and Escape clears the search results and displays all links in the active tab.
-   - Displays a message like "No matches found" if no results are available.
-
-3. **Link Interaction**:
-   - Links are displayed with a title and optional description in the floating list and inside tabs.
-   - Links inside tabs are arranged horizontally and wrap around if necessary.
-   - The code includes concise comments for clarity and maintainability.
-   - Clicking or pressing "Enter" on a link in the floating list opens it in a new tab.
-   - Links are navigable via:
-     - Mouse hover and click for direct selection.
-   - Long titles/descriptions are truncated with ellipses and wrapped if necessary.
-
-4. **Greeting, Date, and Clocks**:
+1. **Greeting, Date, and Clocks**:
    - A top section dynamically displays a greeting (e.g., "Good morning") based on the system time.
    - The current date is shown in the "Month Day, Year" format (e.g., "February 20, 2025"), and is right-aligned.
    - A floating clock section is rendered under the date section.
@@ -41,16 +17,36 @@ The goal is to create a single, self-contained HTML file that serves as a lightw
    - This fallback behavior is implemented, displaying a generic "Welcome" message if system time retrieval fails.
    - The clocks update every second to ensure accurate time display.
 
+2. **Tabs for Categories**:
+   - Links are grouped into categories, each represented by a horizontal tab.
+   - Only one tab is visible at a time.
+   - Tabs are navigable via:
+     - Clicking a tab displays all links in that category, regardless of the search query.
+     - Arrow keys for cycling between tabs (left/right).
+     - Mouse clicks for direct selection.
+
+3. **Typeahead Filtering**:
+   - Filters links in real-time as the user types.
+   - Matches anywhere within the title or description (case-insensitive).
+   - Displays matching links in a floating list at the center of the screen, regardless of their category or tab, with a slight drop shadow.
+   - Backspace refines the search, and Escape clears the search results and displays all links in the active tab.
+   - Displays a message like "No matches found" if no results are available.
+
+4. **Link Interaction**:
+   - Links are displayed with a title and optional description in the floating list and inside tabs.
+   - Links inside tabs are arranged horizontally and wrap around if necessary.
+   - The code includes concise comments for clarity and maintainability.
+   - Clicking or pressing "Enter" on a link in the floating list opens it in a new tab.
+   - Links are navigable via:
+     - Mouse hover and click for direct selection.
+   - Long titles/descriptions are truncated with ellipses and wrapped if necessary.
+
 5. **System Theme Adaptation**:
    - The dashboard automatically adapts to the system's light or dark theme.
    - Hover effects, active tab highlights, and other visual elements adjust accordingly.
    - There is no manual toggle button or emoji for switching themes.
 
-6. **Persistent Frequency-Based Prioritization**:
-   - This feature is not implemented. Links are not prioritized based on frequency of use, and no frequency data is stored or cleared.
-   - Links are defined in a `<script>` tag with `type="text/plain"` at the top of the HTML file for easy editing.
-
-7. **Reset Functionality**:
+6. **Reset Functionality**:
    - A keyboard shortcut resets the dashboard to its default state:
      - Clears the current search.
      - Hides the floating list of matches.
@@ -60,8 +56,11 @@ The goal is to create a single, self-contained HTML file that serves as a lightw
    - A keyboard indicator is displayed at the bottom left of the screen, showing the keys being pressed.
    - Special keys (e.g., "Enter", "Shift") are displayed in rectangular boxes, while regular keys are displayed in square boxes.
    - Arrow keys are displayed as Unicode glyphs (←, →, ↑, ↓) in the keyboard indicator.
-   - Special keys like "Enter" and "Shift" are displayed in rectangular boxes, while regular keys are displayed in square boxes.
    - Keys fade out a few seconds after being pressed.
+
+7. **Persistent Frequency-Based Prioritization**:
+   - This feature is not implemented. Links are not prioritized based on frequency of use, and no frequency data is stored or cleared.
+   - Links are defined in a `<script>` tag with `type="text/plain"` at the top of the HTML file for easy editing.
 
 ---
 
