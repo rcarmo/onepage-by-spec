@@ -5,19 +5,29 @@
    - Implement frequency-based prioritization for links.
    - Store frequency data and clear it after 7 days. (Not implemented yet.)
 
-2. **Error Handling for Missing Titles**:
-   - Display "Untitled" for links with missing titles. (Implemented.)
-
-3. **Responsiveness**:
+2. **Responsiveness**:
    - Add explicit messaging for unsupported screen sizes. (Not implemented yet.)
 
-4. **Arrow Key Rendering**:
+## Completed Features
+1. **Error Handling for Missing Titles**:
+   - Display "Untitled" for links with missing titles. (Implemented.)
+   - Leave descriptions blank if missing. (Implemented.)
+
+2. **Arrow Key Rendering**:
    - Render arrow key presses as Unicode glyphs in the key indicator. (Implemented.)
+   - Support multiple simultaneous key presses. (Implemented.)
+
+3. **Reset Functionality**:
+   - Clear the search query and hide the floating results list. (Implemented.)
+   - Reset the active tab to the first tab. (Implemented.)
+
+4. **Empty Tabs**:
+   - Display "No links available" message for tabs with no links. (Implemented.)
 
 ## Testing Plan
 1. **Functional Testing**:
    - Verify that tabs switch correctly using both keyboard and mouse.
-   - Ensure typeahead filtering works as expected (case-insensitive, matches anywhere in the text).
+   - Ensure typeahead filtering works as expected (case-insensitive, matches anywhere in the title, description, or URL).
    - Test link navigation and launching via both keyboard and mouse.
    - Confirm that the reset functionality clears the search and resets to the first tab.
 
