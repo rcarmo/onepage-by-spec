@@ -6,10 +6,13 @@
    - Store frequency data and clear it after 7 days. (Not implemented yet.)
 
 2. **Error Handling for Missing Titles**:
-   - Display "Untitled" for links with missing titles. (Not implemented yet.)
+   - Display "Untitled" for links with missing titles. (Implemented.)
 
 3. **Responsiveness**:
    - Add explicit messaging for unsupported screen sizes. (Not implemented yet.)
+
+4. **Arrow Key Rendering**:
+   - Render arrow key presses as Unicode glyphs in the key indicator. (Implemented.)
 
 ## Testing Plan
 1. **Functional Testing**:

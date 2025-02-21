@@ -36,6 +36,10 @@
 - **Rationale**: To prioritize frequently accessed links for improved user efficiency.
 - **Implementation**: Not yet implemented; planned to store frequency data and reset it after 7 days.
 
+## 11. Arrow Key Rendering in Key Indicator
+- **Rationale**: To improve the visual representation of arrow key presses.
+- **Implementation**: Arrow key presses are rendered as Unicode glyphs (←, →, ↑, ↓) in the key indicator.
+
 ## 10. Documentation and User Instructions
 - **Rationale**: To assist users in understanding dashboard functionalities.
 - **Implementation**: Included a documentation footer with usage instructions, which hides upon user interaction.

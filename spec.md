@@ -59,7 +59,7 @@ The goal is to create a single, self-contained HTML file that serves as a lightw
    - The documentation section at the bottom of the page animates out of sight after 10 seconds or when a key is pressed.
    - A keyboard indicator is displayed at the bottom left of the screen, showing the keys being pressed.
    - Special keys (e.g., "Enter", "Shift") are displayed in rectangular boxes, while regular keys are displayed in square boxes.
-   - Arrow keys are ignored and not displayed in the keyboard indicator.
+   - Arrow keys are displayed as Unicode glyphs (←, →, ↑, ↓) in the keyboard indicator.
    - Keys fade out a few seconds after being pressed.
 
 ---
