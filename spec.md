@@ -14,7 +14,6 @@ The goal is to create a single, self-contained HTML file that serves as a lightw
    - The clocks are small, rendered inline under the date, and update continuously.
    - If the system time cannot be retrieved, a generic "Welcome" message is displayed without the date or clocks.
    - The clocks and date are always aligned to the right.
-   - This fallback behavior is implemented, displaying a generic "Welcome" message if system time retrieval fails.
    - The clocks update every second to ensure accurate time display.
 
 2. **Tabs for Categories**:
@@ -32,33 +31,33 @@ The goal is to create a single, self-contained HTML file that serves as a lightw
    - Backspace refines the search, and Escape clears the search results and displays all links in the active tab.
    - Displays a message like "No matches found" if no results are available.
 
-4. **Link Interaction**:
-   - Links are displayed with a title and optional description in the floating list and inside tabs.
-   - Links inside tabs are arranged horizontally and wrap around if necessary.
-   - The code includes concise comments for clarity and maintainability.
-   - Clicking or pressing "Enter" on a link in the floating list opens it in a new tab.
-   - Links are navigable via:
-     - Mouse hover and click for direct selection.
-   - Long titles/descriptions are truncated with ellipses and wrapped if necessary.
-
-5. **System Theme Adaptation**:
-   - The dashboard automatically adapts to the system's light or dark theme.
-   - Hover effects, active tab highlights, and other visual elements adjust accordingly.
-   - There is no manual toggle button or emoji for switching themes.
-
-6. **Reset Functionality**:
+4. **Reset Functionality**:
    - A keyboard shortcut resets the dashboard to its default state:
      - Clears the current search.
      - Hides the floating list of matches.
      - Resets the active tab to the first tab.
      - This functionality is partially implemented. The `Escape` key clears the search but does not reset the active tab. Arrow key navigation between tabs is implemented.
-   - The documentation section at the bottom of the page animates out of sight after 10 seconds or when a key is pressed.
+
+5. **Link Interaction**:
+   - Links are displayed with a title and optional description in the floating list and inside tabs.
+   - Links inside tabs are arranged horizontally and wrap around if necessary.
+   - Clicking or pressing "Enter" on a link in the floating list opens it in a new tab.
+   - Links are navigable via:
+     - Mouse hover and click for direct selection.
+   - Long titles/descriptions are truncated with ellipses and wrapped if necessary.
+
+6. **System Theme Adaptation**:
+   - The dashboard automatically adapts to the system's light or dark theme.
+   - Hover effects, active tab highlights, and other visual elements adjust accordingly.
+   - There is no manual toggle button or emoji for switching themes.
+
+7. **Keyboard Indicator**:
    - A keyboard indicator is displayed at the bottom left of the screen, showing the keys being pressed.
    - Special keys (e.g., "Enter", "Shift") are displayed in rectangular boxes, while regular keys are displayed in square boxes.
    - Arrow keys are displayed as Unicode glyphs (←, →, ↑, ↓) in the keyboard indicator.
    - Keys fade out a few seconds after being pressed.
 
-7. **Persistent Frequency-Based Prioritization**:
+8. **Persistent Frequency-Based Prioritization**:
    - This feature is not implemented. Links are not prioritized based on frequency of use, and no frequency data is stored or cleared.
    - Links are defined in a `<script>` tag with `type="text/plain"` at the top of the HTML file for easy editing.
 
