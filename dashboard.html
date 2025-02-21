@@ -472,13 +472,20 @@ Reddit | Social news | https://reddit.com
         document.addEventListener("keydown", (event) => {
             handleKeydown(event);
 
-            // Ignore arrow keys for display
-            if (!["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"].includes(event.key)) {
+            // Render arrow keys with Unicode glyphs
+            const arrowKeyMap = {
+                ArrowLeft: "←",
+                ArrowRight: "→",
+                ArrowUp: "↑",
+                ArrowDown: "↓"
+            };
+
+            const keyDisplay = arrowKeyMap[event.key] || event.key;
                 // Create a key box for the pressed key
                 const keyBox = document.createElement("div");
                 const isSpecialKey = event.key.length > 1; // Special keys like "Enter", "Shift", etc.
                 keyBox.className = `key-box ${isSpecialKey ? "rectangle" : "square"}`;
-                keyBox.textContent = event.key;
+                keyBox.textContent = keyDisplay;
 
                 // Add the key box to the indicator
                 keyIndicatorEl.appendChild(keyBox);
