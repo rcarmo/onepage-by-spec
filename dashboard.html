@@ -316,7 +316,26 @@ Reddit | Social news | https://reddit.com
         }
 
         .overlay button {
+            margin-top: 0;
+        }
+        .overlay-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
             margin-top: 10px;
+        }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1002;
+            backdrop-filter: blur(2px);
         }
     </style>
 </head>
@@ -340,10 +359,10 @@ Reddit | Social news | https://reddit.com
     <div class="key-indicator" id="key-indicator"></div>
     <script>
         // Define the tabs and their associated links using the special HTML tag
-        const rawLinks = document.getElementById("links-data").textContent.trim();
+        let rawLinks = document.getElementById("links-data").textContent.trim();
 
         // Parse the raw text block into structured tabs and links
-        const tabs = rawLinks.trim().split("\n\n").map(section => {
+        let tabs = rawLinks.split("\n\n").map(section => {
             const [category, ...links] = section.split("\n");
             return {
                 name: category.replace(":", "").trim(),
@@ -647,6 +666,7 @@ Reddit | Social news | https://reddit.com
                         contentEl.appendChild(linkEl);
                     });
                 }
+                tabs = newTabs;
                 editOverlay.style.display = "none";
             });
 
@@ -673,8 +693,10 @@ Reddit | Social news | https://reddit.com
 <!-- Overlay -->
 <div class="overlay" id="edit-overlay">
     <textarea id="links-editor"></textarea>
-    <button id="apply-button">Apply</button>
-    <button id="save-button">Save</button>
+    <div class="overlay-buttons">
+        <button id="apply-button">Apply</button>
+        <button id="save-button">Save</button>
+    </div>
 </div>
 </body>
 </html>
