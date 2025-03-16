@@ -64,12 +64,13 @@ The goal is to create a single, self-contained HTML file that serves as a lightw
    - Links are defined in a `<script>` tag with `type="text/plain"` at the top of the HTML file for easy editing.
 
 9. **Editing and Saving**:
-   - An edit button is provided at the bottom right with a Unicode symbol for editing.
-   - Clicking the button opens an overlay with a centered textarea.
-   - The overlay should be styled to match the typeahead floating results
-   - The textarea must use the system monospace font.
-   - The overlay includes two buttons positioned underneath the text area: an "Apply" button that re-parses and updates the link data, and a "Save" button that downloads the entire HTML file.
-   - Those buttons should use CSS styling to match the overall theme of the dashboard.
+   - An edit button (initially partially transparent, becoming fully opaque on hover) is provided at the bottom right with a Unicode symbol for editing.
+   - Clicking the button opens an overlay with a flexbox layout that contains a centered textarea and two buttons ("Apply" and "Save") positioned underneath.
+   - The overlay occupies at least 50% of the viewport height and is styled to match the typeahead floating results.
+   - The textarea uses the system monospace font and is designed to fill the overlay area.
+   - The "Apply" button re-parses and updates the link data.
+   - The "Save" button dismisses the overlay and downloads the entire HTML file.
+   - The overlay can also be dismissed by pressing the Escape key, during which the keyboard indicator is disabled.
 
 ---
 
