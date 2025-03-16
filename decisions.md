@@ -46,7 +46,7 @@
 
 ## 12. Editing Links
 - **Rationale**: To allow users to modify link configurations directly from the browser.
-- **Implementation**: An edit button (initially partially transparent, becoming fully opaque on hover) is provided at the bottom right with a Unicode symbol for editing. Clicking the button opens an overlay with a flexbox layout that centers a non-resizable textarea (using the system monospace font). The overlay occupies at least 50% of the viewport height and is styled to match the typeahead floating results. The "Apply" button re-parses and updates the link data. The overlay can also be dismissed by pressing the Escape key, which disables the keyboard indicator.
+- **Implementation**: An edit button (initially partially transparent, becoming fully opaque on hover) is provided at the bottom right with a Unicode symbol for editing. Clicking the button opens an overlay with a flexbox layout that centers a non-resizable textarea (using the system monospace font). The overlay occupies at least 50% of the viewport height and is styled to match the typeahead floating results. The "Apply" button re-parses and updates the link data. While the overlay is active, the keyboard indicator is disabled. The overlay can also be dismissed by pressing the Escape key.
 
 ## 13. Saving Changes
 - **Rationale**: To allow users to save modifications to link configurations directly from the browser.
