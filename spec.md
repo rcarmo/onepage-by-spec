@@ -1,7 +1,7 @@
 # Self-Contained HTML Dashboard Specification
 
 ## **Overview**
-The goal is to create a single, self-contained HTML file that serves as a lightweight dashboard for launching predefined links. The dashboard will feature typeahead filtering, keyboard and mouse navigation, and a simple, responsive design. It will rely on no external resources and will load instantly.
+The goal is to create a single, self-contained HTML file that serves as a lightweight dashboard for launching predefined links. The dashboard will feature typeahead filtering, keyboard and mouse navigation, a simple, responsive design, and an in-browser editing and saving facility that allows dynamic modifications to link configurations. It will rely on no external resources and will load instantly.
 
 ---
 
@@ -62,6 +62,11 @@ The goal is to create a single, self-contained HTML file that serves as a lightw
 8. **Persistent Frequency-Based Prioritization**:
    - This feature is not implemented. Links are not prioritized based on frequency of use, and no frequency data is stored or cleared.
    - Links are defined in a `<script>` tag with `type="text/plain"` at the top of the HTML file for easy editing.
+
+9. **Editing and Saving**:
+   - An edit button is provided at the bottom right with a Unicode symbol for editing.
+   - Clicking the button opens an overlay with a centered textarea styled to match the typeahead floating results using the system monospace font.
+   - The overlay includes an "Apply" button that re-parses and updates the link data, and a "Save" button that downloads the entire HTML file.
 
 ---
 
