@@ -65,8 +65,11 @@ The goal is to create a single, self-contained HTML file that serves as a lightw
 
 9. **Editing and Saving**:
    - An edit button is provided at the bottom right with a Unicode symbol for editing.
-   - Clicking the button opens an overlay with a centered textarea styled to match the typeahead floating results using the system monospace font.
-   - The overlay includes an "Apply" button that re-parses and updates the link data, and a "Save" button that downloads the entire HTML file.
+   - Clicking the button opens an overlay with a centered textarea.
+   - The overlay should be styled to match the typeahead floating results
+   - The textarea must use the system monospace font.
+   - The overlay includes two buttons positioned underneath the text area: an "Apply" button that re-parses and updates the link data, and a "Save" button that downloads the entire HTML file.
+   - Those buttons should use CSS styling to match the overall theme of the dashboard.
 
 ---
 
