@@ -12,7 +12,7 @@ I needed a single-file dashboard that I could use to quickly access my most-used
 
 I also wanted it to be brain-dead simple to deploy so I could upload and use it in environments where I don't have access to a web server (or even the Internet), like industrial remote desktop environments. Just upload a single HTML file, set your browser to open it on startup, and you're done.
 
-Additionally, and since I had to provide my team(s) with a set of onboarding links to customer environments, I thought it would be nice to make it feasible for anyone to edit the content without needing to know how to code at all (although they do have to edit an HTML tag that is a bit awkwardly placed at the very top of the file).
+Additionally, and since I had to provide my team(s) with a set of onboarding links to customer environments, I thought it would be nice to make it feasible for anyone to edit the content without needing to know how to code at all (they can edit an HTML tag that is a bit awkwardly placed at the very top of the file, or use a simple textarea and "save"/download a new copy of the file). This is a bit of a hack, but it works well enough for my purposes.
 
 ## How
 

@@ -66,6 +66,7 @@ The goal is to create a single, self-contained HTML file that serves as a lightw
 9. **Editing and Saving**:
    - An edit button (initially partially transparent, becoming fully opaque on hover) is provided at the bottom right with a Unicode symbol for editing.
    - Clicking the button opens an overlay with a flexbox layout that contains a centered textarea and two buttons ("Apply" and "Save") positioned underneath.
+   - The textarea is set to be non-resizable via CSS.
    - While the overlay is active the keyboard indicator is disabled.
    - The overlay occupies at least 50% of the viewport height and is styled to match the typeahead floating results.
    - The textarea uses the system monospace font and is designed to fill the overlay area.
