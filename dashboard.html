@@ -581,27 +581,29 @@ Reddit | Social news | https://reddit.com
             }
         });
 
-        // Edit button functionality
-        const editButton = document.getElementById("edit-button");
-        const editOverlay = document.getElementById("edit-overlay");
-        const linksEditor = document.getElementById("links-editor");
-        const saveButton = document.getElementById("save-button");
+        window.addEventListener("DOMContentLoaded", () => {
+            // Edit button functionality
+            const editButton = document.getElementById("edit-button");
+            const editOverlay = document.getElementById("edit-overlay");
+            const linksEditor = document.getElementById("links-editor");
+            const saveButton = document.getElementById("save-button");
 
-        editButton.addEventListener("click", () => {
-            const rawLinks = document.getElementById("links-data").textContent.trim();
-            linksEditor.value = rawLinks;
-            editOverlay.style.display = "flex";
-        });
+            editButton.addEventListener("click", () => {
+                const rawLinks = document.getElementById("links-data").textContent.trim();
+                linksEditor.value = rawLinks;
+                editOverlay.style.display = "flex";
+            });
 
-        saveButton.addEventListener("click", () => {
-            const editedLinks = linksEditor.value;
-            const blob = new Blob([document.documentElement.outerHTML], { type: "text/html" });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement("a");
-            a.href = url;
-            a.download = "dashboard.html";
-            a.click();
-            URL.revokeObjectURL(url);
+            saveButton.addEventListener("click", () => {
+                const editedLinks = linksEditor.value;
+                const blob = new Blob([document.documentElement.outerHTML], { type: "text/html" });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = "dashboard.html";
+                a.click();
+                URL.revokeObjectURL(url);
+            });
         });
     </script>
     <footer class="documentation">
