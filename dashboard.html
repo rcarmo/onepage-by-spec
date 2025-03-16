@@ -309,6 +309,10 @@ Reddit | Social news | https://reddit.com
         .overlay textarea {
             width: 80%;
             height: 60%;
+            font-family: monospace;
+            background-color: var(--bg-color);
+            border: 1px solid var(--highlight-color);
+            padding: 10px;
         }
 
         .overlay button {
@@ -594,6 +598,58 @@ Reddit | Social news | https://reddit.com
                 editOverlay.style.display = "flex";
             });
 
+            const applyButton = document.getElementById("apply-button");
+            applyButton.addEventListener("click", () => {
+                const editedLinks = linksEditor.value;
+                document.getElementById("links-data").textContent = editedLinks;
+                const newTabs = editedLinks.trim().split("\n\n").map(section => {
+                    const [category, ...links] = section.split("\n");
+                    return {
+                        name: category.replace(":", "").trim(),
+                        links: links.map(link => {
+                            const [title, description, url] = link.split(" | ").map(part => part.trim());
+                            return { title, description, url };
+                        })
+                    };
+                });
+                activeTab = 0;
+                tabsEl.innerHTML = "";
+                newTabs.forEach((tab, index) => {
+                    const tabEl = document.createElement("div");
+                    tabEl.textContent = tab.name;
+                    tabEl.className = `tab ${index === activeTab ? "active" : ""}`;
+                    tabEl.addEventListener("click", () => {
+                        activeTab = index;
+                        searchQuery = "";
+                        renderTabs();
+                        renderContent();
+                    });
+                    tabsEl.appendChild(tabEl);
+                });
+                const contentEl = document.getElementById("content");
+                contentEl.innerHTML = "";
+                if (newTabs[0].links.length === 0) {
+                    contentEl.textContent = "No links available";
+                } else {
+                    newTabs[0].links.forEach(link => {
+                        const linkEl = document.createElement("a");
+                        linkEl.href = link.url;
+                        linkEl.target = "_blank";
+                        linkEl.className = "link";
+                        const titleEl = document.createElement("div");
+                        titleEl.className = "link-title";
+                        titleEl.textContent = link.title;
+                        const descriptionEl = document.createElement("div");
+                        descriptionEl.className = "link-description";
+                        descriptionEl.textContent = link.description || "";
+                        linkEl.appendChild(titleEl);
+                        linkEl.appendChild(descriptionEl);
+                        contentEl.appendChild(linkEl);
+                    });
+                }
+                editOverlay.style.display = "none";
+            });
+
             saveButton.addEventListener("click", () => {
                 const editedLinks = linksEditor.value;
                 const blob = new Blob([document.documentElement.outerHTML], { type: "text/html" });
@@ -617,6 +673,7 @@ Reddit | Social news | https://reddit.com
 <!-- Overlay -->
 <div class="overlay" id="edit-overlay">
     <textarea id="links-editor"></textarea>
+    <button id="apply-button">Apply</button>
     <button id="save-button">Save</button>
 </div>
 </body>
