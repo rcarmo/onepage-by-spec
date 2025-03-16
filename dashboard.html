@@ -529,6 +529,13 @@ Reddit | Social news | https://reddit.com
         const keyIndicatorEl = document.getElementById("key-indicator");
 
         document.addEventListener("keydown", (event) => {
+            const editOverlay = document.getElementById("edit-overlay");
+            if (editOverlay.style.display === "flex") {
+                if (event.key === "Escape") {
+                    editOverlay.style.display = "none";
+                }
+                return;
+            }
             handleKeydown(event);
 
             // Render arrow keys with Unicode glyphs
