@@ -43,3 +43,7 @@
 ## 11. Documentation and User Instructions
 - **Rationale**: To assist users in understanding dashboard functionalities.
 - **Implementation**: Included a documentation footer with usage instructions, which hides upon user interaction.
+
+## 12. Editing and Saving
+- **Rationale**: To allow users to modify link configurations directly from the browser.
+- **Implementation**: An edit button opens an overlay containing a centered textarea (using the system monospace font) and two buttons ("Apply" and "Save"). The overlay is styled to match the typeahead floating results and occupies at least 50% of the viewport height. Clicking "Apply" re-parses the link data, and "Save" downloads the entire HTML file.
