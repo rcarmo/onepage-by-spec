@@ -276,6 +276,44 @@ Reddit | Social news | https://reddit.com
         .key-box.fade-out {
             opacity: 0;
         }
+
+        /* Edit Button */
+        .edit-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            padding: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        /* Overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1002;
+        }
+
+        .overlay textarea {
+            width: 80%;
+            height: 60%;
+        }
+
+        .overlay button {
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -542,6 +580,15 @@ Reddit | Social news | https://reddit.com
                 documentationEl.style.display = "none"; // Remove from layout
             }
         });
+
+        <!-- Edit Button -->
+        <button class="edit-button" id="edit-button">✎</button>
+
+        <!-- Overlay -->
+        <div class="overlay" id="edit-overlay">
+            <textarea id="links-editor"></textarea>
+            <button id="save-button">Save</button>
+        </div>
     </script>
     <footer class="documentation">
         <ul class="instructions">
