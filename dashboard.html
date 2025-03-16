@@ -669,6 +669,7 @@ Reddit | Social news | https://reddit.com
             });
 
             saveButton.addEventListener("click", () => {
+                editOverlay.style.display = "none";
                 const editedLinks = linksEditor.value;
                 const blob = new Blob([document.documentElement.outerHTML], { type: "text/html" });
                 const url = URL.createObjectURL(blob);
